@@ -1,0 +1,17 @@
+{
+    "name": "music-api",
+    "version": "1.0.0",
+    "description": "Proyecto api de musica",
+    "main": "index.js",
+    "scripts": {
+        "start": "node index.js"
+    },
+    "dependencies": {
+        "express": "^4.17.1"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git@github.com:andreycattalin/music-api.git"
+    },
+    "license": "ISC"
+}

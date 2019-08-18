@@ -9,7 +9,10 @@ api.get('/test', (req, res) => {
     })
 })
 
-api.post('/song', song.createSong)
+api.post('/songs', song.createSong)
+api.get('/songs', song.getAllSongs)
+api.get('/songs/:id', song.getSongById)
+api.delete('/songs/:id', song.deleteSong)
 
 module.exports = {
     api

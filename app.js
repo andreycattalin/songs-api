@@ -8,14 +8,6 @@ app.use(cors())
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 
-
-/**
- * Default page
- */
-app.get('/', (req, res) => {
-    res.send("Invalid page")
-})
-
 /**
  * Routing API V1.0
  */

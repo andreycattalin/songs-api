@@ -1,10 +1,9 @@
 const express = require('express')
 const api = express.Router()
 
-api.get('/usuarios', (req, res) => {
+api.get('/test', (req, res) => {
     res.send({
-        "hola": "mundo",
-        "personas": ["anfrey", "sandra"]
+        "hora": Date.now(),
     })
 })
 

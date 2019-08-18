@@ -3,7 +3,7 @@ const api = express.Router()
 
 api.get('/test', (req, res) => {
     res.send({
-        "hola": "mundo",
+        "hora": Date.now(),
     })
 })
 

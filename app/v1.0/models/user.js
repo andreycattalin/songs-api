@@ -5,27 +5,35 @@ const vars = require('../helpers/defaults')
 const UserSchema = mongoose.Schema({
     name: {
         type: String,
-        min: 2
+        min: 2,
+        required: true
     },
     email: {
         type: String,
         lowercase: true,
         match: [vars.regexEmail],
-        unique: true
+        unique: true,
+        required: true
     },
     password: {
         type: String,
         minlength: 6,
         match: [vars.regexPassword],
-        select: false
+        select: false,
+        required: true
     },
     role: {
         type: String,
         enum: ["ROLE_USER",
             "ROLE_COMPANY",
-        ]
+        ],
+        required: true
     },
 })
+
+const generateHashPassword = (plainPassword) => {
+    return bcrypt.hashSync(plainPassword, bcrypt.genSaltSync(10))
+}
 
 // Middleware, antes de guardar encriptar la contraseña
 UserSchema.pre('save', function(next) {
@@ -33,7 +41,7 @@ UserSchema.pre('save', function(next) {
         let user = this
 
         if (!user.isModified('password')) return next();
-        user.password = bcryptHelper.generateHashPassword(user.password)
+        user.password = generateHashPassword(user.password)
         next()
     } catch (error) {
         next(error)

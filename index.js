@@ -5,11 +5,9 @@ const app = require('./app')
 const fs = require('fs')
 const https = require('https')
 
-let config = require('./config')
-const environment = process.env.NODE_ENV
-config = config[environment]
+let config = require('./config')[process.env.NODE_ENV]
 
-mongoose.connect(config.db, { useNewUrlParser: true }).then(() => {
+mongoose.connect(config.db, { useNewUrlParser: true, useCreateIndex: true }).then(() => {
         console.log('Conexión a la base de datos establecida...')
 
         app.listen(config.port, () => {

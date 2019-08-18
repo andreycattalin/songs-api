@@ -5,7 +5,9 @@ const song = require('./controllers/song')
 const user = require('./controllers/user')
 const token = require('./helpers/jwt')
 
-api.get('/test', (req, res) => {
+const pass = require('./middlewares/auth')
+
+api.get('/test', pass.authUser, (req, res) => {
     res.send({
         "hora": Date.now(),
     })

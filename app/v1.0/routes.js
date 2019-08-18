@@ -17,6 +17,7 @@ api.patch('/songs/:id', song.updateSong)
 api.delete('/songs/:id', song.deleteSong)
 
 api.post('/auth/signup', user.signUp)
+api.post('/auth/login', user.logIn)
 
 module.exports = {
     api

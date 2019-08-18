@@ -1,9 +1,9 @@
 const express = require('express')
 const api = express.Router()
 
-api.get('/usuarios', (req, res) => {
+api.get('/test', (req, res) => {
     res.send({
-        "adios": "mundo",
+        "hola": "mundo",
     })
 })
 

@@ -9,7 +9,6 @@ let config = require('./config')
 const environment = process.env.NODE_ENV
 config = config[environment]
 
-mongoose.Promise = global.Promise
 mongoose.connect(config.db, { useNewUrlParser: true }).then(() => {
         console.log('Conexión a la base de datos establecida...')
 

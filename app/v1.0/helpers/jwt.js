@@ -38,8 +38,7 @@ function refreshToken(req, res) {
 
             User.findOne({
                 _id: data.sub,
-                role: data.role // user role
-            }, async(err, user) => {
+            }, (err, user) => {
                 if (err) {
                     return res.status(401).send({
                         error: "TokenExpired"
@@ -49,7 +48,6 @@ function refreshToken(req, res) {
                 if (user) {
                     let dataToken = createToken(user)
                     res.status(200).send({
-                        verified: user.verified,
                         access_token: dataToken[0],
                         refresh_token: createRefreshToken(user),
                         expires_in: dataToken[1],

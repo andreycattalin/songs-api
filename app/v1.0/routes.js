@@ -3,6 +3,7 @@ const api = express.Router()
 
 const song = require('./controllers/song')
 const user = require('./controllers/user')
+const token = require('./helpers/jwt')
 
 api.get('/test', (req, res) => {
     res.send({
@@ -18,6 +19,7 @@ api.delete('/songs/:id', song.deleteSong)
 
 api.post('/auth/signup', user.signUp)
 api.post('/auth/login', user.logIn)
+api.post('/auth/token', token.refreshToken)
 
 module.exports = {
     api

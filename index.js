@@ -2,11 +2,12 @@ const dotenv = require('dotenv').config()
 
 const mongoose = require('mongoose')
 const app = require('./app')
-const fs = require('fs')
-const https = require('https')
+    // const fs = require('fs')
+    // const https = require('https')
 
 let config = require('./config')[process.env.NODE_ENV]
 
+mongoose.set('useFindAndModify', false);
 mongoose.connect(config.db, { useNewUrlParser: true, useCreateIndex: true }).then(() => {
         console.log('Conexión a la base de datos establecida...')
 

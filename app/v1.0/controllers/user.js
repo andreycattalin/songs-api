@@ -55,7 +55,33 @@ function logIn(req, res) {
     }
 }
 
+function loginOrSignUpWithGoogle(req, res) {
+
+    if (req === null) {
+        return res.status(500).send({});
+    }
+
+
+    if (!req.user) {
+        let errorResponse = {
+            error: "No tiene permisos"
+        }
+        return res.status(401).send(errorResponse);
+    }
+
+    let currentUser = req.user
+    let dataToken = authJWT.createToken(currentUser)
+    let objUser = {
+        verified: currentUser.verified,
+        access_token: dataToken[0],
+        refresh_token: authJWT.createRefreshToken(currentUser),
+        expires_in: dataToken[1],
+    }
+    return res.status(200).send(objUser)
+}
+
 module.exports = {
     signUp,
-    logIn
+    logIn,
+    loginOrSignUpWithGoogle
 }

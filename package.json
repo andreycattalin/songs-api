@@ -11,10 +11,12 @@
         "cors": "^2.8.5",
         "dotenv": "^8.0.0",
         "express": "^4.17.1",
+        "generate-password": "^1.4.2",
         "jsonwebtoken": "^8.5.1",
         "moment": "^2.24.0",
         "mongoose": "^5.6.9",
         "passport": "^0.4.0",
+        "passport-google-token": "^0.1.2",
         "passport-jwt": "^4.0.0"
     },
     "repository": {

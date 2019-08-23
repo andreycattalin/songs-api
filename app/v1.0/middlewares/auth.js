@@ -6,6 +6,7 @@ const {
 } = require('passport-jwt')
 const User = require('../models/user')
 const config = require('../../../config')[process.env.NODE_ENV]
+const GoogleTokenStrategy = require('passport-google-token').Strategy
 
 /**
  * USER
@@ -63,7 +64,24 @@ const authCompany = passport.authenticate('company', {
     session: false,
 })
 
+passport.use(new GoogleTokenStrategy({
+        clientID: config.googleAuth.clientID,
+        clientSecret: config.googleAuth.clientSecret
+    },
+    function(accessToken, refreshToken, profile, done) {
+        console.log("Cosas")
+        console.log("profile", profile)
+        User.upsertGoogleUser(accessToken, refreshToken, profile, function(err, user) {
+            return done(err, user);
+        });
+    }));
+
+const authGoogle = passport.authenticate('google-token', {
+    session: false
+})
+
 module.exports = {
     authUser,
-    authCompany
+    authCompany,
+    authGoogle
 }
